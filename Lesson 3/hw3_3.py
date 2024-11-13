@@ -1,6 +1,4 @@
 def split_my_list(my_list):
-    if not my_list:
-        return [[],[]]
 
     find_midpoint = (len(my_list) + 1) // 2
 
