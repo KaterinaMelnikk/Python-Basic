@@ -5,8 +5,8 @@ def even_index_calculator(my_list):
 
     sum_even_index = 0
 
-    for i in range(0, len(my_list), 2):
-        sum_even_index += my_list[i]
+    for even_index in range(0, len(my_list), 2):
+        sum_even_index += my_list[even_index]
 
     multiply_by_last = sum_even_index * my_list[-1]
 
