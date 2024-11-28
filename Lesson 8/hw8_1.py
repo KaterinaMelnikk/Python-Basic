@@ -1,5 +1,5 @@
 def add_one(some_list):
-    number_str = "".join([str(element) for element in some_list])
+    number_str = ''.join([str(element) for element in some_list])
     number_int = int(number_str) + 1
     result = list([int(digit) for digit in str(number_int)])
     #print(result) #Перевірка
