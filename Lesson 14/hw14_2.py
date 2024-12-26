@@ -1,7 +1,7 @@
 class CustomException(Exception):
     pass
 
-class Big_group_Error(CustomException):
+class Group_Limit_Error(CustomException):
     def __init__(self, message="Група не може містити більше 10 студентів!"):
         self.message = message
         super().__init__(self.message)
@@ -36,7 +36,6 @@ class Student(Human):
     def __hash__(self):
         return hash(str(self))
 
-
 class Group:
 
     def __init__(self, number):
@@ -45,7 +44,7 @@ class Group:
 
     def add_student(self, student):
         if len(self.group) >= 10:
-            raise Big_group_Error()
+            raise Group_Limit_Error()
         self.group.add(student)
 
     def delete_student(self, last_name):
@@ -91,12 +90,13 @@ try:
     gr.add_student(st8)
     gr.add_student(st9)
     gr.add_student(st10)
-    gr.add_student(st11)  # Should raise GroupOverflowError
-except Big_group_Error as e:
-    print(e)
+    gr.add_student(st11)
+except Group_Limit_Error as e:
+    print(f"Помилка: {e}")
+
 print(gr)
 
-assert gr.find_student('Шевченко') == st1  # 'Тарас Шевченко'
+assert gr.find_student('Шевченко') == st1
 assert gr.find_student('Шевченко2') is None
 
 

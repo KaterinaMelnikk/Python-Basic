@@ -1,7 +1,7 @@
 class CustomException(Exception):
     pass
 
-class GroupOverflowError(CustomException):
+class Group_Limit_Error(CustomException):
     def __init__(self, message="Група не може містити більше 10 студентів!"):
         self.message = message
         super().__init__(self.message)
@@ -35,7 +35,7 @@ class Group:
     def add_student(self, student):
         # Додаємо студента до групи, якщо кількість не перевищує 10
         if len(self.group) >= 10:
-            raise GroupOverflowError()
+            raise Group_Limit_Error()
         self.group.add(student)
 
     def delete_student(self, last_name):
@@ -81,7 +81,7 @@ try:
     gr.add_student(st9)
     gr.add_student(st10)
     gr.add_student(st11)
-except GroupOverflowError as e:
-    print(e)
+except Group_Limit_Error as e:
+    print(f"Помилка: {e}")
 
 print(gr)
