@@ -7,7 +7,7 @@ class Human:
         self.last_name = last_name
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}, {self.age} years, {self.gender}'
+        return f"{self.first_name} {self.last_name}, {self.age} years, {self.gender}"
 
 class Student(Human):
 
@@ -16,7 +16,7 @@ class Student(Human):
         self.record_book = record_book
 
     def __str__(self):
-        return f"{super().__str__()}, Record Book: {self.record_book}"
+        return f"{super().__str__()}, Record book: {self.record_book}"
 
 class Group:
 
@@ -31,6 +31,8 @@ class Group:
         student = self.find_student(last_name)
         if student:
             self.group.remove(student)
+        else:
+            print("Can't find the student. Please, try again!")
 
     def find_student(self, last_name):
         for student in self.group:
@@ -39,11 +41,8 @@ class Group:
         return None
 
     def __str__(self):
-        all_students = ''
-        if self.group:
-            for student in self.group:
-                all_students = '\n'.join(str(student))
-        return f'Number:{self.number}\\n {all_students} '
+        all_students = '\n'.join(str(student) for student in self.group) if self.group else "No students in the group."
+        return f'Group Number: {self.number}\n{all_students}'
 
 st1 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
 st2 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
@@ -58,4 +57,4 @@ assert isinstance(gr.find_student('Jobs'), Student) is True, 'Метод пои�
 gr.delete_student('Taylor')
 print(gr)  # Only one student
 
-gr.delete_student('Taylor')  # No error!
+gr.delete_student('Taylor')  # No error! (Can't find the student. Please, try again!)
